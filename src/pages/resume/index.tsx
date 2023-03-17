@@ -1,5 +1,12 @@
+import { useUserRepositories } from '@entities/repository/hooks';
 import { useUserByUsername } from '@entities/user';
-import { Divider, Link, Skeleton, Stack, Typography } from '@mui/material';
+import {
+  CircularProgress,
+  Divider,
+  Link,
+  Stack,
+  Typography,
+} from '@mui/material';
 import { paths } from '@pages/paths';
 import { MainTemplate } from '@shared/ui';
 import { format } from 'date-fns';
@@ -16,7 +23,11 @@ export const ResumePage = () => {
   }
 
   if (!data) {
-    return <MainTemplate showSkeletonTitle>Resume {username}</MainTemplate>;
+    return (
+      <MainTemplate showSkeletonTitle>
+        <CircularProgress />
+      </MainTemplate>
+    );
   }
 
   const name = data.name || data.login;
@@ -32,10 +43,41 @@ export const ResumePage = () => {
         <DescriptionSection label="URL">
           <Link href={data.url}>{data.url}</Link>
         </DescriptionSection>
-        <DescriptionSection label="BIO">{data.bio}</DescriptionSection>
+        {data.bio && (
+          <DescriptionSection label="BIO">{data.bio}</DescriptionSection>
+        )}
+        <LanguagesSection />
       </Stack>
     </MainTemplate>
   );
+};
+
+const LanguagesSection = () => {
+  const { username } = useParams<{ username: string }>();
+
+  const {
+    languagesStatistic,
+    query: { isLoading, isSuccess },
+  } = useUserRepositories(username!);
+
+  if (isLoading) {
+    return <CircularProgress />;
+  }
+
+  if (isSuccess) {
+    return (
+      <DescriptionSection label="Languages">
+        {languagesStatistic.map(
+          ([language, percent], index) =>
+            `${language} - ${(percent * 100).toFixed(2)}%${
+              index !== languagesStatistic.length - 1 ? ', ' : ''
+            }`,
+        )}
+      </DescriptionSection>
+    );
+  }
+
+  return null;
 };
 
 const DescriptionSection = ({

@@ -1,4 +1,4 @@
-import { GithubUser } from '@shared/api/github/types';
+import { GithubUser, UserRepository } from '@shared/api/github/types';
 import { GITHUB_TOKEN } from '@shared/config';
 import { Octokit } from 'octokit';
 
@@ -14,6 +14,15 @@ const getUser = async (username: string): Promise<GithubUser> => {
     .then((res) => res.data);
 };
 
+const getRepositories = (username: string): Promise<UserRepository[]> => {
+  return octokit
+    .request(`GET /users/${username}/repos`, {
+      username,
+    })
+    .then((res) => res.data);
+};
+
 export const githubApi = {
   getUser,
+  getRepositories,
 };
