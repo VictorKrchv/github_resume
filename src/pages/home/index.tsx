@@ -10,7 +10,7 @@ import { EXAMPLE_USERS } from '@pages/home/lib';
 import { paths } from '@pages/paths';
 import { useDisclosure, useInput } from '@shared/hooks';
 import { MainTemplate } from '@shared/ui';
-import { FormEvent, useState } from 'react';
+import { FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Link as NavLink } from 'react-router-dom';
 
@@ -75,7 +75,7 @@ const ExampleUsersSection = () => {
       <Typography variant="subtitle1">See some popular users</Typography>
       {EXAMPLE_USERS.map(({ name, username }, index) => {
         return (
-          <Link component={NavLink} to={paths.resume(username)}>
+          <Link key={username} component={NavLink} to={paths.resume(username)}>
             {index !== EXAMPLE_USERS.length - 1 ? `${name}, ` : name}
           </Link>
         );

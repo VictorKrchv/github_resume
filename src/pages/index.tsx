@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
-import { paths } from './paths';
 import { HomePage } from '@pages/home';
 import { ResumePage } from '@pages/resume';
+import { paths } from '@pages/paths';
 
 export const Pages = () => {
   return (
