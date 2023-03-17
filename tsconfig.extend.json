@@ -2,14 +2,11 @@
     "compilerOptions": {
       "baseUrl": "./src",
       "paths": {
-        "@api": ["./shared/api"],
-        "@api/*": ["./shared/api/*"],
         "@entities": ["./entities"],
         "@entities/*": ["./entities/*"],
         "@features": ["./features"],
         "@features/*": ["./features/*"],
-        "@lib": ["./shared/lib"],
-        "@lib/*": ["./shared/lib/*"],
+        "@shared/*": ["./shared/*"],
         "@ui": ["./shared/ui"],
         "@app/*": ["./app/*"],
         "@pages": ["./pages"],

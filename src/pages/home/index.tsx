@@ -1,3 +1,5 @@
+import { MainTemplate } from '@shared/ui/templates/main-template';
+
 export const HomePage = () => {
-  return <div>Home page</div>;
+  return <MainTemplate title="My github resume">Home page</MainTemplate>;
 };
