@@ -3,6 +3,7 @@ import {
   CardContent,
   Container,
   Divider,
+  Paper,
   Stack,
   Typography,
 } from '@mui/material';
@@ -15,7 +16,7 @@ interface Props {
 export const MainTemplate = ({ children, title }: Props) => {
   return (
     <Container sx={{ paddingTop: 3 }}>
-      <Card>
+      <Paper>
         <CardContent>
           <Stack spacing={2}>
             <Typography variant="h4" sx={{ textTransform: 'upperCase' }}>
@@ -25,7 +26,7 @@ export const MainTemplate = ({ children, title }: Props) => {
             <div>{children}</div>
           </Stack>
         </CardContent>
-      </Card>
+      </Paper>
     </Container>
   );
 };
