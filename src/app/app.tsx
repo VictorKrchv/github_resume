@@ -1,3 +1,10 @@
+import { Pages } from "@pages";
+import { BrowserRouter } from "react-router-dom";
+
 export const App = () => {
-  return <div>app</div>;
+  return (
+    <BrowserRouter>
+      <Pages />
+    </BrowserRouter>
+  );
 };
